@@ -57,6 +57,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <html>
 <head>
     <title>Fibonacci y Factorial</title>
+    <link rel="stylesheet" type="text/css" href="styles.css">
 </head>
 <body>
 

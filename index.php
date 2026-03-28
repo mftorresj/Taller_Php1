@@ -2,7 +2,7 @@
 <html>
 <head>
     <title>Aplicación Taller PHP</title>
-    <link rel="stylesheet" href="assets/styles.css">
+    <link rel="stylesheet" type="text/css" href="styles.css">
 </head>
 <body>
 

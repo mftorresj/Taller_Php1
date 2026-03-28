@@ -10,19 +10,26 @@ class Stats {
         $n = count($numeros);
 
         if ($n % 2 == 0) {
-            // Si es par, promedio de los dos del centro
             $mid1 = $numeros[$n/2 - 1];
             $mid2 = $numeros[$n/2];
             return ($mid1 + $mid2) / 2;
         } else {
-            // Si es impar, valor del centro
             return $numeros[floor($n/2)];
         }
     }
 
     public function moda($numeros) {
-        $frecuencias = array_count_values($numeros);
+
+        $numerosString = array_map(function($n) {
+            return (string)$n;
+        }, $numeros);
+
+        $frecuencias = array_count_values($numerosString);
         $maxFrecuencia = max($frecuencias);
+
+        if ($maxFrecuencia == 1) {
+            return ["No hay moda"];
+        }
 
         $modas = [];
 
@@ -43,7 +50,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     $entrada = $_POST["numeros"];
 
-    // Convertir string a array
+    $entrada = trim($entrada);
+
     $array = explode(",", $entrada);
 
     $numeros = [];
@@ -52,7 +60,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $valor = trim($valor);
 
         if (!is_numeric($valor)) {
-            $error = "Todos los valores deben ser números";
+            $error = "Todos los valores deben ser números válidos";
             break;
         }
 
@@ -68,8 +76,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $moda = $stats->moda($numeros);
 
         $resultado = "
-            Promedio: $promedio <br>
-            Media: $media <br>
+            Promedio: " . round($promedio, 2) . " <br>
+            Media: " . round($media, 2) . " <br>
             Moda: " . implode(", ", $moda);
     }
 }
@@ -79,6 +87,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <html>
 <head>
     <title>Promedio, Media y Moda</title>
+    <link rel="stylesheet" type="text/css" href="styles.css">
 </head>
 <body>
 

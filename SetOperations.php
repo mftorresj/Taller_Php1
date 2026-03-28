@@ -72,6 +72,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <html>
 <head>
     <title>Operaciones con Conjuntos</title>
+    <link rel="stylesheet" type="text/css" href="styles.css">
 </head>
 <body>
 
